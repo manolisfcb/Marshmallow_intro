@@ -22,8 +22,20 @@ incoming_book = {
     "description": "Science fiction comedy adventure"
 }
 
-book_schema = BookSchema(unknown=INCLUDE) # Si no se especifica, por defecto es RAISE_ERROR
+book_schema = BookSchema(unknown=EXCLUDE) # Si no se especifica, por defecto es RAISE_ERROR
 book = book_schema.load(incoming_book)
 
 print (book)
 
+
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+        
+    def __repr__(self):
+        return f"Book(title={self.title}, author={self.author})"
+        
+book_obj = Book(**book)
+
+print(book_obj)
